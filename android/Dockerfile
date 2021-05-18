@@ -19,14 +19,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
 ##############################
 
 # ENV TARGET_ARCHS "armeabi armeabi-v7a x86 mips arm64-v8a x86_64 mips64"
-ENV TARGET_ARCHS "armeabi-v7a x86 arm64-v8a x86_64" 
+ENV TARGET_ARCHS "armeabi-v7a x86 arm64-v8a x86_64"
 ENV ANDROID_NDK_DOWNLOAD_URL "https://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip"
 ENV ANDROID_SDK_DOWNLOAD_URL "https://dl.google.com/android/repository/tools_r25.2.5-linux.zip"
 ENV ANDROID_SETUP_APIS "23 25"
 ENV ANDROID_BUILD_TOOLS_VERSION 25
 ENV ANDROID_TARGET_API 23
 
-ENV PJSIP_DOWNLOAD_URL "http://www.pjsip.org/release/2.7.1/pjproject-2.7.1.tar.bz2"
+ENV PJSIP_DOWNLOAD_URL "https://github.com/pjsip/pjproject/archive/refs/tags/2.7.1.tar.gz"
 
 ENV SWIG_DOWNLOAD_URL "http://prdownloads.sourceforge.net/swig/swig-3.0.7.tar.gz"
 
@@ -79,9 +79,9 @@ RUN cd /sources/android_sdk/tools && \
 
 # Download Pjsip
 RUN cd /sources/pjsip && \
-    curl -L -# -o pjsip.tar.bz2 "$PJSIP_DOWNLOAD_URL" && \
-    tar xjf pjsip.tar.bz2 && \
-    rm -rf pjsip.tar.bz2 && \
+    curl -L -# -o pjsip.tar.gz "$PJSIP_DOWNLOAD_URL" && \
+    tar xzf pjsip.tar.gz && \
+    rm -rf pjsip.tar.gz && \
     mv pjproject-*/* ./
 
 # Download Swig
